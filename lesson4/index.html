@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../lesson4/style.css">
+    <title>Document</title>
+</head>
+<body>
+  <div class="front__page">
+  <div class="text__topic">
+    <p class= "topic">
+        One: 'Hi Mary.' Two: 'Oh, hi.'<br>
+        One: 'How are you doing?'<br>
+        Two: 'I'm doing alright. How about you?'<br>
+            One: 'Not too bad. The weather is great isn't it?'<br>
+            Two: 'Yes. It's absolutely beautiful today.'<br>
+        One: 'I wish it was like this more frequently.'<br>
+        Two: 'Me too.'<br>
+        One: 'So where are you going now?'<br>
+        Two: 'I'm going to meet a friend of mine at the department store.'<br>
+        One: 'Going to do a little shopping?'<br>
+        Two: 'Yeah, I have to buy some presents for my parents.'<br>
+        One: 'What's the occasion?'<br>
+            Two: 'It's their anniversary.'<br>
+        One: 'That's great. Well, you better get going. You don't want to be late.'<br>
+        Two: 'I'll see you next time.'<br>
+        One: 'Sure. Bye.'<br>
+    </p>
+  </div>
+    <form class = "test__form" action="#">
+        <div class = "test__input">
+            <label for = "name" class = "label">Name: </label><input id = "name" type = "text" class = "input">
+        </div>
+        <div class ="test__input">
+            <label for = "tel" class = "label">Telephone number: </label><input id = "tel" type = "text" class = "input">
+        </div>
+        <div class ="test__input">
+            <label for = "mail" class = "label">Email: </label><input id = "mail" type = "text" class = "input">
+        </div>
+        <div class = "test__input">
+            <label for = "sometext" class = "label">Text: </label><input id = "sometext" type = "text" class = "input">
+        </div>         
+         <button type = "submit" class = "btn">Отправить</button>
+    </form>
+  </div>
+    <script>
+      let p = document.querySelector('p').textContent;      
+      console.log(p.replace(/\B'/g,'"'));
+      let form = document.querySelector('.test__form')
+      form.addEventListener('submit', event => {
+        event.defaultPrevented;
+          let inputName = document.getElementById('name');
+          let inputTel = document.getElementById('tel');
+          let inputMail = document.getElementById('mail');
+          inputName.classList.remove('test__red');
+          inputTel.classList.remove('test__red');
+          inputMail.classList.remove('test__red');
+
+          if ((!inputName.value.match(/[a-zа-я]/iu)) || (!inputTel.value.match(/^\+7\(\d{3}\)\d{3}-\d{4}$/iu)) || (!inputMail.value.match(/^[a-z.-]+@[a-z]+\.[a-z]{2,4}$/iu))) {
+            
+            if (!inputName.value.match(/[a-zа-я]/iu)) {
+            inputName.classList.add('test__red');
+            alert('Неверный формат, введите имя в буквенном формате');            
+            }
+                    
+          if (!inputTel.value.match(/^\+7\(\d{3}\)\d{3}-\d{4}$/iu)) {
+            inputTel.classList.add('test__red');
+            alert('Неверный формат, введите номер в формате - +7(000)000-0000');
+            }
+                    
+          if (!inputMail.value.match(/^[a-z.-]+@[a-z]+\.[a-z]{2,4}$/iu)) {
+            inputMail.classList.add('test__red');
+            alert('Неверный формат, допустимый email - mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru.');
+            }
+          } else {
+            console.log(event);  
+          }
+          
+          
+
+      })
+
+    </script>
+</body>
+</html>
